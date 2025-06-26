@@ -1,0 +1,2487 @@
+Symantec Critical Attack Discovery and Intelligence
+Current Iran-Associated Cyber Threats
+
+White Paper
+
+Broadcom
+
+SED-IAP-WP100
+January 24, 2020
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+Broadcom, the pulse logo, Connecting everything, and Symantec are among the trademarks of Broadcom. 
+
+Copyright © 2020 Broadcom. All Rights Reserved.
+
+The term “Broadcom” refers to Broadcom Inc. and/or its subsidiaries. For more information, please visit www.broadcom.com.
+
+Broadcom reserves the right to make changes without further notice to any products or data herein to improve reliability, 
+function, or design. Information furnished by Broadcom is believed to be accurate and reliable. However, Broadcom does 
+not assume any liability arising out of the application or use of this information, nor the application or use of any product or 
+circuit described herein, neither does it convey any license under its patent rights nor the rights of others. 
+
+Broadcom
+
+SED-IAP-WP100
+2
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+Table of Contents
+
+Chapter 1: About This Document ...................................................................................................... 4
+
+Chapter 2: Executive Summary ......................................................................................................... 5
+
+2.1  Iranian Cyber Ecosystem .........................................................................................................................................5
+
+2.2  Key Observations......................................................................................................................................................6
+
+2.3  Outlook.......................................................................................................................................................................6
+
+Chapter 3: Details of Groups  ............................................................................................................. 7
+
+3.1  Shamoon....................................................................................................................................................................7
+
+3.2  Dustman/ZeroCleare .................................................................................................................................................8
+
+3.3  Elfin ............................................................................................................................................................................8
+
+3.3.1  Case Study 1 ....................................................................................................................................................9
+
+3.3.2  Case Study 2 ..................................................................................................................................................10
+
+3.4  Seedworm ................................................................................................................................................................10
+
+3.4.1  Case Study 1 ..................................................................................................................................................10
+
+3.4.2  Case Study 2 ..................................................................................................................................................11
+
+3.5  Tortoiseshell............................................................................................................................................................12
+
+3.6  Chafer.......................................................................................................................................................................12
+
+3.7  Crambus...................................................................................................................................................................13
+
+3.7.1  Case Study .....................................................................................................................................................13
+
+3.8  Other Iran-linked Groups........................................................................................................................................14
+
+Chapter 4: Conclusion  ..................................................................................................................... 15
+
+Appendix A: Indicators of Compromise (IOCs) .............................................................................  16
+
+Appendix B: Mitre Attack Techniques ............................................................................................  19
+
+Revision History  ............................................................................................................................... 24
+
+SED-IAP-WP100; January 21, 2020.............................................................................................................................. 24
+
+Broadcom
+
+SED-IAP-WP100
+3
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+Chapter 1: About This Document
+
+This report is classified TLP: Amber.
+
+The Traffic Light Protocol (TLP) was created in order to facilitate greater sharing of information. TLP is a set of designations 
+used to ensure that sensitive information is shared with the appropriate audience.
+
+ TLP:Red: Recipients may not share TLP:RED information with any parties outside of the specific exchange, meeting, or 
+
+conversation in which it was originally disclosed. 
+
+ TLP:Amber: Recipients may only share TLP:AMBER information with members of their own organization, and with 
+
+clients or customers who need to know the information to protect themselves or prevent further harm.
+
+ TLP:Green: Recipients may share TLP:GREEN information with peers and partner organizations within their sector or 
+
+community, but not via publicly accessible channels.
+
+ TLP:White: Subject to standard copyright rules, TLP:WHITE information may be distributed without restriction.
+
+For additional information on the TLP, see http://www.us-cert.gov/tlp.
+
+For a briefing on this white paper, contact us at Threat.Intelligence@broadcom.com to connect with a Symantec security 
+specialist.
+
+Broadcom
+
+SED-IAP-WP100
+4
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+Chapter 2: Executive Summary
+
+Increased tensions between the U.S. and Iran have led to fears of an upsurge in Iranian cyber attacks against organizations 
+associated with the U.S. and its allies. Iran has an extensive track record in this sphere, with government-sponsored cyber 
+threat groups conducting numerous offensive cyber operations in recent years. 
+
+Symantec, a Broadcom company, assesses that these groups will continue to conduct operations at a high pace. 
+Furthermore, Symantec believes that any escalation in the number of operations or changes in industry or regional targeting 
+focus will take time to materialize. Organizations in previously compromised industries and regions face a higher threat of 
+being targeted by Iranian cyber operations and should re-examine their detection and mitigation strategies to deter Iranian 
+government-sponsored threat groups' known tactics, techniques, and procedures (TTPs). 
+
+However, an internal need to mount some kind of public response may mean the nature of Iranian activity may differ with 
+the change in circumstances, causing them to target different organizations, in particular highly visible organizations 
+associated with the U.S. and its allies. 
+
+This document summarizes the various targeted attack activity groups, their recent action, and some indicators of 
+compromise (IOCs) with the intention of providing the reader with an understanding of capabilities and techniques used by 
+groups known to be operating from Iran. The attribution underlying the data in this paper is based on publicly available 
+information and is not solely based on our own analysis directly.
+
+2.1  Iranian Cyber Ecosystem
+
+The Iranian cyber ecosystem is decentralized and fluid, with individual threat actors moving between cyber espionage 
+groups and even undertaking cyber crime activity. Attacks are not infrequently outsourced to individual external contractors 
+working within small corporate consultancies. This structure makes it difficult for researchers to definitively group threat 
+actors and can offer the Iranian government plausible deniability for destructive attacks. In several cases, Symantec has 
+seen threat actor groups share tools, infrastructure, targets, and tactics.
+
+The tactics of Iranian threat actors have evolved from quick and relatively simple destructive attacks, such as distributed 
+denial of service (DDoS) attacks or website defacements, to an increased focus on network compromises where the actors 
+maintain a persistent foothold and obfuscate their presence to make attribution difficult. Iranian groups have increasingly 
+targeted critical infrastructure including energy and telecommunications companies.
+
+Iranian threat groups have also been tied to multiple destructive wiper attacks. Identifying potential targets for destructive 
+attacks is particularly problematic because a change from espionage to destruction comes with limited warning if a threat 
+group is already present on a network, as seen with Timberworm and Greenbug espionage operations facilitating the 
+Shamoon destructive attacks beginning in late 2016.
+
+Broadcom
+
+SED-IAP-WP100
+5
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+2.2  Key Observations
+
+Considering the multitude of disparate groups operating and conducting cyber attacks against organizations around the 
+globe, there is not a single trait that defines them. The following are some key observations from tracking these groups:
+
+ During recent years, actor groups operating out of Iran have honed their skills at an unprecedented scale, being able to 
+
+victimize Fortune 500 organizations along with their public sector counterparts.
+
+ The groups appear to be unconcerned with attacks being publicly attributed to them.
+ Aside from Greenbug and Shamoon having worked together, most of the different groups seldom work in tandem; they 
+seem to mostly be independent of each other, working under organizational mandates which do not often intersect.
+ In the early years, the groups appeared motivated to conduct DDoS attacks against financial institutions, with the aim of 
+
+attempting heists, but those attacks have not been seen for several years.
+
+ Groups such as Elfin, Crambus, Seedworm, Chafer, Tortoiseshell, and others are motivated to conduct espionage by 
+
+attacking:
+– Private sector: Telecommunication providers, transportation (air and marine) entities, defense contractors, oil and 
+
+natural gas companies, and those in their supply chain.
+
+– Public sector: Military intelligence, diplomatic missions, think tanks, and defense ministries.
+
+ Some of the groups have no reservations in conducting destructive attacks, rendering computing equipment unusable.
+ Several groups make extensive use of dynamic DNS services while conducting attack campaigns.
+ At least two of the groups have shown a proclivity towards using DNS as a communication channel between victimized 
+computers and the malware's control infrastructure, that is DNS tunneling. This functionality has been observed across 
+both IPv4 and IPv6.
+
+ The two most widely used methods of infiltrating a target's network remain:
+
+– Spear phishing using topical themes with embedded scripts that invoke PowerShell to download additional 
+
+components.
+
+– Publicly documented vulnerabilities such as those in VPN and web servers.
+
+ All groups rely on public or open-source tools (Mimikatz, LaZagne, and so on) to conduct their campaigns; the only 
+
+differing factor amongst the groups is the degree of reliance.
+
+ There appear to be several hacktivists that conduct uncoordinated attacks, like site defacements, as a sign of 
+
+patriotism. These are unpredictable and opportunistic, so details have been left out of this document.
+
+2.3  Outlook
+
+Given the history of attacks originating from Iran, it is evident the groups consider destruction of equipment as an acceptable 
+form of damage to targets. However, to date these incidents have only targeted Middle Eastern entities. Iranian actors have 
+not shown an appetite for conducting similar attacks against Western organizations. Considering the tense geopolitical 
+climate in 2020 and based on previous Iranian activity, we believe cyber attacks originating from Iran or Iranian proxies would 
+be (in order of descending probability):
+
+ Wipers being used for destructive attacks against critical infrastructure
+ Infrastructure for telecommunication providers being attacked to disrupt services
+ Hacktivist defacements of popular websites
+ DDoS attacks against financial entities
+
+To date, most Iran originating actor groups, other than Greenbug and Shamoon, operated with only a small degree of 
+collaboration. We suspect a coordinated attack campaign is more likely in 2020 but organizing such an attack is likely to take 
+time.
+
+Broadcom
+
+SED-IAP-WP100
+6
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+Chapter 3: Details of Groups
+
+Over the past several months, several Iran-linked threat groups named Shamoon, Elfin, Seedworm, and Crambus have 
+been especially prolific against a wide range of industry verticals.
+
+3.1  Shamoon
+
+Name
+
+Aliases
+
+Shamoon
+
+Cutting Sword of Justice
+
+First Seen
+
+2012
+
+Malware Used
+
+W32.Disttrack, W32.Disttrack.B, Trojan.Filerase
+
+Targeted Sectors
+
+Energy, Aviation, Government
+
+Infection Vectors
+
+Secondary infections
+
+Shamoon has received a lot of public attention since it first appeared in August 2012 and used the malware family 
+W32.Disttrack in its attacks against two Middle Eastern oil and natural gas organizations. The attacks were destructive in 
+nature, wiping out critical data from computers and rendering them unusable.
+
+The malware used by this group leveraged a legitimate driver to wipe machines, and subsequently reported wiping statistics 
+to a command and control (C&C) server.
+
+In both attacks from 2012, and those subsequently seen towards the end of 2016, hard-coded network credentials were 
+configured into the malware, which assisted its spreading across the network. These credentials were acquired and likely 
+shared by Greenbug, allowing Shamoon the ability to execute its attack.
+
+Table 1 shows the timeline of activity on a single computer used as patient zero during a Shamoon attack at the end of 2016.
+
+Table 1:  Activity Timeline on Computer During 2016 Shamoon Attack
+
+Time
+
+08/12/2016 06:24
+
+18/01/2017 16:33
+
+18/01/2017 16:33
+
+18/01/2017 16:35
+
+18/01/2017 18:48
+
+18/01/2017 18:48
+
+18/01/2017 18:49
+
+18/01/2017 18:49
+
+18/01/2017 18:49
+
+18/01/2017 18:49
+
+18/01/2017 18:50
+
+18/01/2017 18:50
+
+18/01/2017 18:52
+
+22/01/2017 18:19
+
+22/01/2017 18:19
+
+23/01/2017 03:05
+
+Broadcom
+
+File Name
+
+MSMPENG.EXE
+
+in-cloud4.exe
+
+cloudapp4.exe
+
+PNRP4.exe
+
+gc.exe
+
+gc.exe
+
+ff.exe
+
+ie.exe
+
+ff.exe
+
+ie.exe
+
+em.exe
+
+em.exe
+
+ol.exe
+
+pnrp4.exe
+
+cloudapp4.exe
+
+ntertmgr32.exe
+
+Description
+
+Mimikatz
+
+PSExec
+
+PAADmin
+
+Hacktools
+
+Hacktools
+
+Hacktools
+
+Hacktools
+
+Hacktools
+
+Hacktools
+
+Hacktools
+
+Hacktools
+
+Hacktools
+
+Hacktools
+
+Hacktools
+
+Hacktools
+
+W32.Disttrack.B
+
+SED-IAP-WP100
+7
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+Credentials were likely stolen a month prior to the attackers' return to use common legitimate tools to dump additional 
+information from the victim network before deploying Disttrack.
+
+Shamoon reappeared for a third time in December 2018 when it was once again used against targets in the Middle East. 
+These attacks were doubly destructive, since they involved a new wiper (Trojan.Filerase) that deletes files from infected 
+computers before the Shamoon malware wipes the master boot record (MBR).
+
+3.2  Dustman/ZeroCleare
+
+Name
+
+Aliases
+
+Dustman
+
+ZeroCleare
+
+First Seen
+
+2019
+
+Malware Used
+
+Dustman, ZeroCleare
+
+Targeted Sectors
+
+Energy
+
+Infection Vectors
+
+Unknown
+
+In December 2019, IBM X-Force publicly wrote about a wiper malware it came across and named ZeroCleare based on PDB 
+strings within the malware. This malware is an evolution of Disttrack, used in the Shamoon incidents. The authors updated 
+the malware logic but retained the underlying logic of utilizing the Eldos driver to overwrite the MBR and partitions. The 
+attackers used a vulnerable VirtualBox driver to bypass security controls and eventually use the Eldos driver to gain direct 
+access to the raw hard disk and conduct their wiping operation.
+
+Symantec automatically detected and blocked this piece of malware in July 2019, which appears closer to the date of 
+compilation of the malware in June 2019.
+
+In January 2020, the National Cybersecurity Authority of Saudi Arabia released a report about a wiper malware they called 
+Dustman based on the file name used during an attack campaign. Dustman is a further evolution of ZeroCleare, where the 
+authors optimized functionality into a single file instead of the methods used in the June/July campaigns.
+
+3.3  Elfin
+
+Name
+
+Aliases
+
+Elfin
+
+APT33, Stonedrill, Holmium, Refined Kitten, Magnallium, Alibaba
+
+First Seen
+
+2015
+
+Malware Used
+
+Hacktool.Mimikatz, Backdoor.Notestuk, Trojan.Nancrat, Trojan.Netweird.B, Trojan.Stonedrill, 
+Backdoor.Patpoopy, Trojan.Quasar, RULER, Backdoor.Powerton
+
+Targeted Sectors
+
+Aerospace, Defense, Energy, Chemical Engineering, Financial, Food, Government, Logistics, Professional 
+Services, Shipping, Technology
+
+Infection Vectors
+
+Email
+
+Elfin relies on custom and commodity malware to gather data for likely cyber espionage operations targeted at entities 
+primarily in Saudi Arabia and the United States. 
+
+Elfin makes extensive use of dynamic DNS infrastructure during targeting, along with purchased hosts at globally located 
+VPS providers serving as proxies for C&C.
+
+Broadcom
+
+SED-IAP-WP100
+8
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+3.3.1  Case Study 1
+
+In June 2019, Elfin sent out a phishing email to hundreds of recipients across multiple countries in what could be deemed 
+an opportunistic trawling attack. The link within the document led recipients to dynamic DNS infrastructure controlled by the 
+attackers. Figure 1 is a screenshot of the email sent.
+
+Figure 1:  Screenshot of Email Sent by Elfin
+
+As Symantec observed email activity across numerous sectors and regions, it appeared likely that Elfin was conducting a 
+widespread email campaign with enticing lures to hook high-value targets at multiple organizations, rather than targeting 
+specific industries.
+
+Broadcom
+
+SED-IAP-WP100
+9
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+3.3.2  Case Study 2
+
+Subsequently, in late August 2019, Elfin operators compromised a victim in Saudi Arabia with a malicious HTA file. Following 
+the initial compromise, Elfin continued to rely on the group's known TTPs to further its foothold in the host. During the 
+incident, the legitimate utility mshta.exe executed a malicious HTA file with a job application theme (Figure 2).
+
+Figure 2:  Malicious HTA file with a Job Application Theme
+
+Based on the file path of the malicious HTA file in the command shown in Figure 2, the file was downloaded after a victim 
+used Microsoft Edge to visit a malicious website. Elfin actors have previously leveraged emails containing links to malicious 
+websites that, when visited, automatically download their first-stage malware to victim machines.
+
+A PowerShell command then downloaded a JPG file from a dynamic DNS host spoofing a U.S. defense contractor.
+
+Figure 3:  PowerShell Command Used to Download JPG File
+
+3.4  Seedworm
+
+Name
+
+Aliases
+
+Seedworm
+
+MuddyWater, Temp Zagros, Static Kitten
+
+First Seen
+
+2017
+
+Malware Used
+
+Backdoor.Powemuddy, (aka Powermud, POWERSTATS), SHARPSTATS, DELPHSTATS, Backdoor.Mori
+
+Targeted Sectors
+
+Government, Energy, Telecommunications, Technology, Research
+
+Infection Vectors
+
+Email
+
+Seedworm has been engaging in espionage operations predominately in Turkey, Pakistan, Russia, and a number of Middle 
+Eastern countries. 
+
+3.4.1  Case Study 1
+
+Between April and June 2019, Seedworm used the Powermud v2 backdoor to attack four victims in the telecommunications 
+and education industries in Turkey, New Zealand, Ukraine, and the United Kingdom.
+
+Seedworm gained access to the victims' networks through phishing emails with attached Microsoft Word documents, which 
+the actors likely used as lure files. These documents contained a malicious macro that runs when the user clicks Enable 
+Editing and Enable Content. Examples of these documents are shown in Figure 4.
+
+Broadcom
+
+SED-IAP-WP100
+10
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+Figure 4:  Examples of Word Documents Used by Seedworm
+
+On a computer within an IT services management company in Turkey, the group uploaded PowerShell Empire, a post-
+exploitation framework that allows users to run PowerShell commands without using powershell.exe, which includes 
+modules to aid in credential stealing and data collection.
+
+After compromising a target system by installing Powermud, Seedworm first runs a tool that steals passwords saved in users' 
+web browsers and email, demonstrating that access to the victim's email, social media, and chat accounts is one of the 
+group's likely goals. Seedworm then uses open-source tools such as LaZagne and Crackmapexec to obtain Windows 
+authorization credentials. Seedworm uses off-the-shelf, unmodified versions of these tools as well as custom-compiled 
+variants, which we have determined are only used by this group.
+
+In order to perform lateral movement on the victim's network, Seedworm uses a vulnerability scanner to search for Microsoft 
+Server Message Block (SMB) remote code execution vulnerabilities on other computers in the compromised subnet (see 
+security update MS17-010).
+
+3.4.2  Case Study 2
+
+The most recent Seedworm espionage activity was seen between October 2019 and January 2020, against international 
+public organizations, think tanks, and telcos across the U.S., Nigeria, Afghanistan, Iraq, Saudi Arabia, and Pakistan. The 
+malware used by Seedworm in this attack is called Backdoor.Mori, which:
+
+ Creates and stores data within the registry under HKLM\Software\NFC
+ Executes commands from the operator on-demand, utilizing pipes and cmd.exe /c
+ Uses DNS tunneling to communicate with its C&C server
+
+Examined samples contain the following domains to be used for DNS tunneling C&C communication, one of which is picked 
+randomly and used:
+
+Table 2:  Domains Used for DNS Tunneling C&C Communication
+
+device-update [ . ]tk
+
+microsoftsecurity [ . ]gq
+
+officex64 [ . ]ml
+
+spacex [ . ]cf
+
+googlecloud [ . ]cf
+
+msdn-social [ . ]ml
+
+outlook-accounts [ . ]ml
+
+spacex [ . ]gq
+
+googlecloud [ . ]gq
+
+msdn-social [ . ]tk
+
+outlook-accounts [ . ]tk
+
+windowscortana [ . ]tk
+
+windows-patch [ . ]ml
+
+windows-patch [ . ]tk
+
+—
+
+Some variants of Backdoor.Mori communicate via HTTP with a unique identifier for the sample being used, possibly 
+customized for the victim network
+
+Broadcom
+
+SED-IAP-WP100
+11
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+Seedworm appears to have used Word and Excel documents as the infection vector during this attack campaign. These 
+documents used a combination of JavaScript downloaders and PowerShell to install the Mori backdoor on victim computers. 
+As an example, on one targeted computer Excel was observed being used to download additional components, as shown 
+in Figure 5.
+
+Figure 5:  Excel Used to Download Additional Components
+
+3.5  Tortoiseshell
+
+Name
+
+Aliases
+
+First Seen
+
+Tortoiseshell
+
+None
+
+2018
+
+Malware Used
+
+Backdoor.Syskit
+
+Targeted Sectors
+
+IT services
+
+Infection Vectors
+
+Compromised web servers
+
+Tortoiseshell has tentative links to the Elfin group. The group has to date focused itself on performing classic supply chain 
+attacks against Saudi Arabian organizations. The target organizations are primarily IT providers operating widely in the 
+region. Tortoiseshell is believed to be compromising IT providers in order to gain access to their clients. 
+
+As part of the infection routine on one target, the attackers initially compromised a web server, installed a web shell, and then 
+used it to deploy malware onto the network. Once on a victim computer, Tortoiseshell deploys several information gathering 
+tools, retrieving a range of information about the computer, including IP configuration, running applications, system 
+information, network connectivity, and so on.
+
+3.6  Chafer
+
+Name
+
+Aliases
+
+First Seen
+
+Chafer
+
+APT39
+
+2014
+
+Malware Used
+
+Backdoor.Remexi, Backdoor.Remexi.B, Backdoor.Agenty, Backdoor.Tcpy, and Backdoor.Httpy
+
+Targeted Sectors
+
+Airlines, Telecommunications, Software Development
+
+Infection Vectors
+
+Email, SQL Injections
+
+Chafer is one of the most active Iran-linked groups in operation. Chafer has compromised a large number of organizations 
+based in the Middle East and Europe.
+
+Chafer appears to be primarily involved in intelligence gathering and several of its attacks, such as those against telco 
+operators or airlines, were likely carried out to facilitate surveillance of end-user customers. 
+
+Broadcom
+
+SED-IAP-WP100
+12
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+One of the organizations compromised by Chafer in 2017 was a telco services provider in the Middle East, which sells its 
+solutions to multiple telco operators in the region. By moving two steps up the supply chain the attackers could potentially 
+have carried out surveillance on a vast pool of end users. Chafer is also known to have attempted to compromise a large 
+international travel reservations firm, indicating its mission to track movements or communication related to certain entities.
+
+Chafer has been observed compromising victims by attacking web servers, likely through SQL injection attacks. It has also 
+used malicious documents likely circulated using spear-phishing emails sent to individuals working in targeted organizations.
+
+3.7  Crambus
+
+Name
+
+Aliases
+
+Crambus
+
+Oilrig, Twisted Kitten, APT34, ITG13
+
+First Seen
+
+2015
+
+Malware Used
+
+Trojan.Herherminth, Trojan.Ismagent, Poison Frog, Sakabota, QUADAGENT, Glimpse, Highshell
+
+Targeted Sectors
+
+Government, Financial, Technology
+
+Infection Vectors
+
+Email, Watering Holes
+
+Crambus has mounted operations against targets in Saudi Arabia, Israel, the United Arab Emirates, Lebanon, Kuwait, Qatar, 
+the United States, and Turkey.
+
+The group usually infects its victims with malware via spear-phishing attacks, targeting individuals within organizations of 
+interest using malicious Office documents with embedded macros to install its backdoor. Crambus has also been known to 
+send emails containing links to websites registered by the attackers and employ social-engineering tactics to trick victims 
+into downloading and installing its malware.
+
+3.7.1  Case Study
+
+Between July 2018 and June 2019, Crambus engaged in network intrusion operations against organizations in the Middle 
+East, with a particular focus on Saudi Arabia and Kuwait. Targets included public administration and defense organizations, 
+a technology organization, and an airline.
+
+After gaining access to the targeted computers, Crambus executed two backdoors: Sakabota and Poison Frog. Sakabota 
+can be used for reconnaissance, privilege escalation, lateral movement, and to maintain persistence. It contains additional 
+functionality shown in Table 3.
+
+Table 3:  Additional Sakabota Functionality
+
+Downloading files from a URL
+
+Uploading files over FTP
+
+Taking screenshots
+
+Remote port forwarding
+
+Conducting ping scans
+
+Brute force logins to network shares
+
+Scanning ports
+
+—
+
+Poison Frog is capable of using DNS tunneling for C&C, uploading and downloading files to a C&C server, and executing 
+remote commands.
+
+Crambus also deployed the webshells shown in Table 4 on infected computers to maintain persistence.
+
+Broadcom
+
+SED-IAP-WP100
+13
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+Table 4:  Webshells used by Crambus to maintain persistence
+
+File Name
+
+Owa.aspx
+
+Error.aspx.txt
+
+SHA256
+
+24307b1fa0e6e513355b3143a3c61c5ddf7adf43a70856dd1ab6449cf8cb2408
+
+97df67112a953a91bd86a9df3e039493eba95b544a8e3acec2fe5b274c01240a
+
+To collect credentials and escalate privileges, Crambus used a number of publicly available tools including:
+
+ Invoke-WCMDump - A PowerShell tool that can dump credentials from the Windows Credential Manager.
+ Mimikatz - An open-source, post-compromise credential theft tool.
+ LaZagne - An open-source password recovery tool.
+
+Alongside the lateral movement capabilities of Sakabota, the group used several command-line utilities to perform lateral 
+movement, including the native Windows utility Netsh and Plink, the command-line tool from the PuTTY suite.
+
+3.8  Other Iran-linked Groups
+
+Table 5:  Other Iran-linked Groups
+
+Name
+
+Aliases
+
+Description
+
+Cadelle
+
+—
+
+Active since at least 2012. Known for compromising a large number of 
+individuals in Iran, as well as organizations outside Iran. The organizations 
+outside Iran include airlines, telecommunication companies, and at least one 
+Middle Eastern Ministry of Foreign Affairs. Likely linked with the Chafer group. 
+Both groups have attacked the same organizations, even infecting several of the 
+same computers. In one case, the same computer was compromised within 
+minutes by both groups. It is possible that Cadelle and Chafer are one in the 
+same, however, there is insufficient evidence to definitely state this.
+
+Tools
+
+Backdoor.Cadelspy
+
+Greenbug
+
+Volatile Kitten, 
+Cutting Kitten
+
+Active since at least June 2016. Involved in targeted attacks in the Middle East 
+against organizations in the government, aviation, energy, investment and, 
+education sectors. Possible link to Shamoon, since a number of organizations 
+compromised by Greenbug were subsequently attacked by Shamoon.
+
+Trojan.Ismdoor
+Hacktool.Seasharpee 
+Backdoor.Vodiboti
+
+Timberworm Magic Hound, 
+
+News Beef
+
+Cricket
+
+Rocket Kitten, 
+Flying Kitten
+
+Leafminer
+
+—
+
+Fruitworm
+
+Copy Kitten
+
+Active since at least 2016. Known to attack organizations in the government, 
+energy, chemical/pharmaceutical and transportation sectors. Focused on Saudi 
+Arabia, but victims have also been discovered in Iraq, the UAE, Qatar, and the 
+U.S. Possibly linked to Shamoon, since a number of organizations compromised 
+by Timberworm were subsequently attacked by Shamoon.
+
+Active since at least January 2010, Cricket initially made its name through 
+website defacements but has since expanded into espionage, targeting 
+dissidents in Iran for surveillance and defense targets in the U.S. Does not 
+appear to be very sophisticated and relies heavily on social engineering. It may 
+have purchased or developed custom malware to use in these attacks.
+
+Active since at least March 2017, Leafminer is known to have compromised a 
+number of high profile websites in the Middle East in order to steal SMB 
+credentials from victim machines. It has targeted organizations in the 
+construction, education, engineering, government, IT, legal, and transport 
+sectors. The group is known to steal email data, SQL databases, and credentials.
+
+Active since at least March 2015, Fruitworm is known to target Israeli individuals 
+in government organizations and academic institutions. Its primary method of 
+attack is topic-tailored spear-phishing emails, which are used to deliver malware 
+to the target.
+
+Backdoor.Mhretriev
+Backdoor.Mapkill
+
+Trojan.Rapidstealer
+Infostealer.Mysayad
+
+Backdoor.Sorgu
+Trojan.Imecab
+
+Trojan.Jectin
+
+Broadcom
+
+SED-IAP-WP100
+14
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+Chapter 4: Conclusion
+
+The recent upsurge in tensions between Iran and the U.S. could lead to an increase in both the frequency and 
+aggressiveness of Iranian attacks. While Symantec has yet to see any evidence of a notable uptick in activity, this should 
+not be misinterpreted, since planned operations could take some time to prepare and execute. 
+
+Organizations associated with the U.S. and its allies are an obvious target. While Iranian actors have, to date, heavily 
+focused on organizations in the Middle East, attacks against the U.S. should not be ruled out, particularly considering the 
+heightened state of tensions at present. 
+
+However, organizations based in the Middle East are probably those most at risk, given that Iranian groups know this region 
+best and may already have ongoing compromises. Destructive attacks, such as those involving disk wipers, usually require 
+some prior compromise of the organization's network. This may mean that any potential destructive attacks could be focused 
+on the Middle East, particularly if the attackers are under time pressure to retaliate. 
+
+Most destructive attacks originating from Iran have involved Shamoon disk-wiping malware. Since Shamoon leverages the 
+legitimate Eldos driver to wipe machines, organizations concerned about a potential Shamoon attack could mitigate the risk 
+of exposure by hunting for and disabling the Eldos driver on their network. 
+
+In addition to this, any organization that has found evidence of an intrusion by any Iran-linked group in the past should remain 
+on high alert, since attacks frequently rely on credentials stolen in earlier intrusions.
+
+Nevertheless, any potential target (organizations publicly associated with or strategically important to the U.S. or its allies) 
+should exercise extreme vigilance and review its security posture. 
+
+For a briefing on this white paper, contact us at Threat.Intelligence@broadcom.com to connect with a Symantec security 
+specialist.
+
+Broadcom
+
+SED-IAP-WP100
+15
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+Appendix A: Indicators of Compromise (IOCs)
+
+Table 6:  Indicators of Compromise (IOCs)
+
+Group
+
+Shamoon
+
+Shamoon
+
+Shamoon
+
+IOC
+
+SHA256: 
+89850b5f6e06db3965d0fdf8681bc6e55d3b572c97351190c247b9c8b1419850
+
+Description
+
+Disttrack.B Wiper malware
+
+SHA256: 
+bac9503a28ef97ee5d77fc3caedbf4f61e975679212f5da7945e6063c1d8a88f
+
+Targeted malware
+
+SHA256: 
+bd2097055380b96c62f39e1160d260122551fa50d1eccdc70390958af56ac003
+
+Disttrack.B Wiper malware
+
+Dustman/ZeroCleare MD5: 1a69a02b0cd10b1764521fec4b7376c9
+
+Dustman/ZeroCleare MD5: 33f98b613b331b49e272512274669844
+
+Dustman/ZeroCleare MD5: 69b0cec55e4df899e649fa00c2979661
+
+Dustman/ZeroCleare MD5: 993e9cb95301126debdea7dd66b9e121
+
+Wiper malware (x64)
+
+Wiper malware (x86)
+
+ElDos driver (x86)
+
+ElDos driver (x64)
+
+Xsxeon
+
+Powermud.v2
+
+Powermud.v2
+
+Powermud.v2
+
+SHA256: 
+7b4da8f9ffa435c689923b7245133ee032f99fcd841516f2e2275fb4b76d28f9
+
+SHA256: 
+36fc0a750d29ecf1d31ae3c7e834e548fe8eed25db62dfbdbf9148d896c13f59
+
+SHA256: 
+5f2eac7251a9fc74309985b3dc1d9730f86c8cd95b22d16b04c0ad0521f10598
+
+SHA256: 
+7b93b928bb9e41a7b890bc2ad559044fa39351d7f42a0bcb0ee1d2bb5def8e60
+
+SHA256: 
+f0c726c75a79e83ab24c6d6e04022974bd79d35ff4c3e0118e7707eedd7edea2
+
+Lazagne
+
+SHA256: 
+905e3f74e5dcca58cf6bb3afaec888a3d6cb7529b6e4974e417b2c8392929148
+
+SHA256: 
+148839e013fee10ee5007f80de2e169778739e84d1bbb093f69b56060ceef73f
+
+SHA256: 
+18cfd4c853b4fb497f681ea393292aec798b65d53874d8018604068c30db5f41
+
+SHA256: 
+1d768c6a5165cadf39ac68e4cc294399f09b48dfefd7bfd6d78e75ad882cd3f1
+
+SHA256: 
+20ec56029ec2dc6a0f86d172f12914d078fc679a8d01257394864413d01d7eda
+
+SHA256: 
+2f69f7df7a2ab7b1803bb50b23ac17f7047b4651513bdff98dae5adee492c98f
+
+SHA256: 
+32c5d06a518a17daf825374449a5096e1109a1eb99c010bb2524b9b0ed6e3114
+
+SHA256: 
+4a2db2c017b44834bfab8bd7ba107750d77cd1e62db0b4892ab3c053b2d64fae
+
+SHA256: 
+64001be2fc9ccec320d48c75d2de8ad7cd74092065cb44fe35b38624d4493df0
+
+SHA256: 
+7f31ab924bddc2f20697157f7cfa6ff25adfbbb50403052cccd05dc0e9faabc4
+
+SHA256: 
+905e3f74e5dcca58cf6bb3afaec888a3d6cb7529b6e4974e417b2c8392929148
+
+Downloader
+
+Downloader
+
+Downloader
+
+Downloader
+
+Downloader
+
+Downloader
+
+Downloader
+
+Downloader
+
+Downloader
+
+Downloader
+
+Downloader
+
+SED-IAP-WP100
+16
+
+Seedworm
+
+Seedworm
+
+Seedworm
+
+Seedworm
+
+Seedworm
+
+Seedworm
+
+Seedworm
+
+Seedworm
+
+Seedworm
+
+Seedworm
+
+Seedworm
+
+Seedworm
+
+Seedworm
+
+Seedworm
+
+Seedworm
+
+Seedworm
+
+Broadcom
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+Table 6:  Indicators of Compromise (IOCs) (Continued)
+
+Group
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Broadcom
+
+IOC
+
+SHA256: 
+02a3296238a3d127a2e517f4949d31914c15d96726fb4902322c065153b364b2
+
+SHA256: 
+07d123364d8d04e3fe0bfa4e0e23ddc7050ef039602ecd72baed70e6553c3ae4
+
+Description
+
+Custom Backdoor
+
+Custom Backdoor
+
+SHA256: 
+07e791d18ea8f2f7ede2962522626b43f28cb242873a7bd55fff4feb91299741
+
+Poisonfrog
+
+SHA256: 
+08cb4383288d2e5829b0fc186df36deb6b8078137b6b3a338a0597a665204852
+
+Alias:Infostealer
+
+SHA256: 
+0e5d06e08a1a665b1112043e99718392fe1aeb700793fd49be7f60d7f3b63e4d
+
+SHA256: 
+18e5753be209eafb6292f712d481cf264273d5e592cca81fc2a990440f49a545
+
+Custom Backdoor
+
+Alias: TCPStager
+
+SHA256: 
+1c79900c35fcb0e717ccb6939e4a5801ad7c3b7c806a74e48ce9c8a77c135bb5
+
+CVE-2018-8440
+
+SHA256: 
+225e06c4ad0d00387f814de69be3e5dfa655d96e34b94fb0777b6aa045f127d1
+
+Custom Backdoor
+
+SHA256: 
+248cbfa25130e37916d4593fc192a2dc666bc67755cdebdc0f1cdf91bd4a518b
+
+Alias:ListNetstat
+
+SHA256: 
+34588fb9b32d09d83de2f911beed013c87074ad572c97bc0197d30e9777a4154
+
+Custom Backdoor
+
+SHA256: 
+3a7b95c93f2e525f7dfa1816652d8cebb682fc9daa26c66e193f0c5190d0ed17
+
+SHA256: 
+444c4e9b4e0217c7b5a00aab3348913a2ea8aad005cdcd6fc033ef34642d5bf8
+
+Poisonfrog
+
+Powershell
+
+SHA256: 
+4e0ca724fd8a18a94d9dbc990aa506981db700c76e5611a02e189a430d5f4764
+
+Downloader
+
+5 SHA256: 
+26799f0791ad26cbd781d89bf4363e6827b3b5f59746405a847dec45f040796
+
+SHA256: 
+55adf532a7b7fb2b291b88b072fda5c0d642bf9bd4af316ae8c40c70feb391a4
+
+SHA256: 
+5dbd3018d2e6c2b207506d511aa18cbde292c4bf2a127073150cd276fc6e925e
+
+Alias:ListNetstat
+
+Alias:Infostealer
+
+Alias:ListNetstat
+
+SHA256: 
+694e7361f2698e6995bab4b3d1cda4e98f8d83d1ba8c39367be6158bc17ad30e
+
+Custom Backdoor
+
+SHA256: 
+707cbcf75a08445479388ade04229c7e08f48cf2f9efc47fc27de564406c56e2
+
+SHA256: 
+77a85a06a9c00cc58f4b701ef574389b13b6edd04b93fbabcf0a4de03b68ab76
+
+SHA256: 
+869ae66ec2d7e46cbfb2c3d15b34b77a12a372ed0c5e92587afcce892c1f6b17
+
+SHA256: 
+882d51c2f258fc4bc189837b6de12760a51764bc0f621a692173273ff59af117
+
+Custom Backdoor
+
+Alias:Screenshot
+
+CVE-2018-8440
+
+Custom Backdoor
+
+SHA256: 
+8f149e7e454053505dcc3252dd72de132298d3c0085640eb959de490347046c1
+
+Custom Backdoor
+
+SHA256: 
+9b980581131b070c7b790ca536ac606da913990d888352c99f480f1c0597c3a8
+
+SHA256: 
+b1223d63a8aea619e006c76a6a8d8ac16808fa65a90b98cfd2bebf470bf6c58e
+
+Downloader
+
+Downloader
+
+SED-IAP-WP100
+17
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+Table 6:  Indicators of Compromise (IOCs) (Continued)
+
+Group
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Tortoiseshell
+
+Chafer
+
+Chafer
+
+Chafer
+
+Chafer
+
+Chafer
+
+Chafer
+
+Crambus
+
+Crambus
+
+Crambus
+
+IOC
+
+SHA256: 
+bc06dd43d1f3eda6beae85ce31e5798b0888a60c6426b33df5a40e6287b06848
+
+SHA256: 
+da060f48b3c681639d8ec285846285ed8fda300fa9ee69a69d4fa8c0420c8070
+
+Description
+
+Custom Backdoor
+
+Custom Backdoor
+
+SHA256: 
+ea875796304235077556bfbf23274d25819a42a7ba4ebeabb445274568ab43ac
+
+Custom Backdoor
+
+SHA256: 
+f71732f997c53fa45eef5c988697eb4aa62c8655d8f0be3268636fc23addd193
+
+Custom Backdoor
+
+SHA256: 
+1e94a1ca83123688215b64369a37162448a0f3927e3f0f4f412ee352db6abf5c
+
+SHA256: 
+fc74c58705f4d2f6241118b729d86e4610045418690d833de6b123d08d1f8a37
+
+Exemyr
+
+Trojan
+
+SHA256: 
+d4dcbfbab036132eb6c40c56a44c0d3b4b681b19841b81fc4f8e1d62ea5b211d
+
+Alias: Dntxdoor
+
+SHA256: 
+caa841e4809efdfb3be1de588d74ccf32a96a8c1bc4108d07ade509551ce77e4
+
+SHA256: 
+3ebc9890fa04b1035565d7d273f80032e811ac5e42d3aa1dafe6e33b6572f8cb
+
+SHA256: 
+2802ad7e910e4ef647b93f11b3f4a5ec465a0abf16c542884442c70555ca8352
+
+SHA256: 
+3996efe9a3cf471a1f816287368fa0f99d2cdb95786530b0b61c7b9024ff717b
+
+SHA256: 
+db1f460f624a4c13c3004899c5d0a4c3668ba99bb1e6be7f594e965c637b6917
+
+SHA256: 
+4c68068c16e320e2dd346adfa64686a3bcd5aef98fdc0f69d5f0e82d254eacf4
+
+Remexi
+
+Remexi
+
+Mini_rsocks
+
+Alias: Hisoka
+
+Alias: Sakabota
+
+Alias: Yakenzi
+
+Broadcom
+
+SED-IAP-WP100
+18
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+Appendix B: Mitre Attack Techniques
+
+Table 7:  Mitre Attack Techniques
+
+Group
+
+Technique ID Technique Name
+
+Technique Use
+
+Elfin
+
+Elfin
+
+Elfin
+
+Elfin
+
+Elfin
+
+Elfin
+
+Elfin
+
+Elfin
+
+Elfin
+
+Elfin
+
+Elfin
+
+Elfin
+
+Elfin
+
+Elfin
+
+Elfin
+
+Elfin
+
+Elfin
+
+Elfin
+
+Elfin
+
+Elfin
+
+Elfin
+
+T1110
+
+T1043
+
+T1003
+
+T1002
+
+T1132
+
+T1480
+
+T1048
+
+Brute Force
+
+Elfin has used password spraying to gain access to target systems. 
+
+Commonly Used Port
+
+Elfin has used port 443 for command and control. 
+
+Credential Dumping
+
+Data Compressed
+
+Data Encoding
+
+Elfin has used a variety of publicly available tools like LaZagne, 
+Mimikatz, Gpppassword, SniffPass, and ProcDump to dump 
+credentials. 
+
+Elfin has used WinRAR to compress data prior to exfiltration. 
+
+Elfin has used base64 to encode command and control traffic. 
+
+Execution Guardrails
+
+Elfin has used kill dates in their malware to guardrail execution. 
+
+Exfiltration Over Alternative 
+Protocol
+
+Elfin has used FTP to exfiltrate files (separately from the C2 channel). 
+
+T1203
+
+Exploitation for Client Execution Elfin has attempted to exploit a known vulnerability in WinRAR (CVE-
+
+2018-20250). 
+
+T1068
+
+Exploitation for Privilege 
+Escalation
+
+Elfin has used a publicly available exploit for CVE-2017-0213 to 
+escalate privileges on a local system. 
+
+T1040
+
+Network Sniffing
+
+Elfin has used SniffPass to collect credentials by sniffing network 
+traffic. 
+
+T1027
+
+T1086
+
+Obfuscated Files or Information Elfin has used base64 to encode payloads. 
+
+PowerShell
+
+Elfin has utilized PowerShell to download files from the C2 server and 
+run various scripts. 
+
+T1060
+
+Registry Run Keys/Startup Folder Elfin has deployed a tool known as DarkComet to the Startup folder of 
+
+a victim. 
+
+T1105
+
+T1053
+
+T1192
+
+T1071
+
+T1032
+
+T1065
+
+T1204
+
+Remote File Copy
+
+Scheduled Task
+
+Elfin has downloaded additional files and programs from its C2 server.
+
+Elfin has created a scheduled task to execute a .vbe file multiple times 
+a day. 
+
+Spear Phishing Link
+
+Elfin has sent spear phishing emails containing links to .hta files. 
+
+Standard Application Layer 
+Protocol
+
+Elfin has used HTTP for command and control. 
+
+Standard Cryptographic Protocol Elfin has used AES for encryption of command and control traffic. 
+
+Uncommonly Used Port
+
+Elfin has used ports 808 and 880 for command and control. 
+
+User Execution
+
+Elfin has lured users to click links to malicious HTML applications 
+delivered via spear phishing emails.[1][3]
+
+T1078
+
+Valid Accounts
+
+Elfin has used valid accounts for initial access and privilege escalation. 
+
+Seedworm T1088
+
+Bypass User Account Control
+
+Seedworm uses various techniques to bypass UAC. 
+
+Seedworm T1191
+
+CMSTP
+
+Seedworm has used CMSTP.exe and a malicious INF to execute its 
+POWERSTATS payload. 
+
+Seedworm T1059
+
+Command-Line Interface
+
+Seedworm has used a custom tool for creating reverse shells. 
+
+Seedworm T1500
+
+Compile After Delivery
+
+Seedworm has used the .NET csc.exe tool to compile executables 
+from downloaded C# code. 
+
+Seedworm T1175
+
+Component Object Model and 
+Distributed COM
+
+Seedworm has used malware that has the capability to execute 
+malware via COM and Outlook. 
+
+Seedworm T1090
+
+Connection Proxy
+
+Seedworm has controlled POWERSTATS from behind a proxy network 
+to obfuscate the C2 location. 
+
+Broadcom
+
+SED-IAP-WP100
+19
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+Table 7:  Mitre Attack Techniques (Continued)
+
+Group
+
+Technique ID Technique Name
+
+Technique Use
+
+Seedworm T1003
+
+Credential Dumping
+
+Seedworm has performed credential dumping with Mimikatz, 
+LaZagne, and other tools, including by dumping passwords saved in 
+victim web browsers and email. 
+
+Seedworm T1503
+
+Credentials from Web Browsers Seedworm has run a tool that steals passwords saved in victim web 
+
+browsers. 
+
+Seedworm T1081
+
+Credentials in Files
+
+Seedworm has run a tool that steals passwords saved in victim email. 
+
+Seedworm T1002
+
+Data Compressed
+
+Seedworm has used the native Windows cabinet creation tool, 
+makecab.exe, likely to compress stolen data to be uploaded. 
+
+Seedworm T1140
+
+Deobfuscate/Decode Files or 
+Information
+
+Seedworm decoded base64-encoded PowerShell commands using a 
+VBS file. 
+
+Seedworm T1173
+
+Dynamic Data Exchange
+
+Seedworm T1083
+
+File and Directory Discovery
+
+Seedworm T1036
+
+Masquerading
+
+Seedworm T1170
+
+Mshta
+
+Seedworm T1104
+
+Multi-Stage Channels
+
+Seedworm has used malware that can execute PowerShell scripts via 
+DDE. 
+
+Seedworm has used malware that checked if the ProgramData folder 
+had folders or files with the keywords "Kasper," "Panda," or "ESET." 
+
+Seedworm has used filenames and Registry key names associated 
+with Windows Defender. The group has also stored obfuscated 
+JavaScript code in an image file named temp.jpg. 
+
+Seedworm has used mshta.exe to execute its POWERSTATS payload 
+and to pass a PowerShell one-liner for execution. 
+
+Seedworm has used one C2 to obtain enumeration scripts and monitor 
+web logs, but a different C2 to send data back.
+
+Seedworm T1027
+
+Obfuscated Files or Information Seedworm has used Daniel Bohannon's Invoke-Obfuscation 
+
+framework. The group has also used other obfuscation methods, 
+including Base64 obfuscation of VBScripts and PowerShell 
+commands. 
+
+Seedworm T1086
+
+PowerShell
+
+Seedworm has used PowerShell for execution. 
+
+Seedworm T1057
+
+Process Discovery
+
+Seedworm has used malware to obtain a list of running processes on 
+the system. 
+
+Seedworm T1060
+
+Registry Run Keys/Startup Folder Seedworm has added Registry Run key 
+
+Seedworm T1105
+
+Remote File Copy
+
+Seedworm T1085
+
+Rundll32
+
+Seedworm T1113
+
+Screen Capture
+
+Seedworm T1064
+
+Scripting
+
+Seedworm T1063
+
+Security Software Discovery
+
+Seedworm T1193
+
+Spear Phishing Attachment
+
+Seedworm T1082
+
+System Information Discovery
+
+KCU\Software\Microsoft\Windows\CurrentVersion\Run\SystemTextEn
+coding to establish persistence. 
+
+Seedworm has used malware that can upload additional files to the 
+victim's machine. 
+
+Seedworm has used malware that leveraged rundll32.exe in a Registry 
+Run key to execute a .dll. 
+
+Seedworm has used malware that can capture screenshots of the 
+victim's machine. 
+
+Seedworm has used VBScript and JavaScript files to execute its 
+POWERSTATS payload. Seedworm has also used Microsoft scriptlets, 
+macros, and PowerShell scripts. 
+
+Seedworm has used malware to check running processes against a 
+hard-coded list of security tools often used by malware researchers. 
+
+Seedworm has compromised third parties and used compromised 
+accounts to send spear phishing emails with targeted attachments to 
+recipients. 
+
+Seedworm has used malware that can collect the victim's OS version 
+and machine name. 
+
+Seedworm T1016
+
+System Network Configuration 
+Discovery
+
+Seedworm has used malware to collect the victim's IP address and 
+domain name. 
+
+Broadcom
+
+SED-IAP-WP100
+20
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+Table 7:  Mitre Attack Techniques (Continued)
+
+Group
+
+Technique ID Technique Name
+
+Technique Use
+
+Seedworm T1033
+
+System Owner/User Discovery
+
+Seedworm has used malware that can collect the victim's username. 
+
+Seedworm T1204
+
+User Execution
+
+Seedworm has attempted to get users to enable macros and launch 
+malicious Microsoft Word documents delivered via spear phishing 
+emails. 
+
+Seedworm T1047
+
+Windows Management 
+Instrumentation
+
+Seedworm has used malware that leveraged WMI for execution and 
+querying host information. 
+
+Chafer
+
+T1090
+
+Connection Proxy
+
+Chafer
+
+T1003
+
+Credential Dumping
+
+Chafer
+
+T1002
+
+Data Compressed
+
+Chafer used custom tools to create SOCK5 proxies between infected 
+hosts. 
+
+Chafer has used Mimikatz, Ncrack, Windows Credential Editor and 
+ProcDump to dump credentials. 
+
+Chafer has used WinRAR and 7-Zip to compress and archive stolen 
+data. 
+
+Chafer
+
+Chafer
+
+Chafer
+
+Chafer
+
+Chafer
+
+Chafer
+
+Chafer
+
+Chafer
+
+T1046
+
+T1060
+
+T1076
+
+T1021
+
+T1053
+
+T1064
+
+T1023
+
+T1045
+
+Network Service Scanning
+
+Chafer used a custom port scanner known as BLUETORCH
+
+Registry Run Keys/Startup Folder Chafer has maintained persistence using the startup folder. 
+
+Remote Desktop Protocol
+
+Chafer has been seen using RDP for lateral movement and 
+persistence. 
+
+Remote Services
+
+Scheduled Task
+
+Scripting
+
+Chafer used secure shell (SSH) to move laterally among their targets. 
+
+Chafer has created scheduled tasks. 
+
+Chafer utilized custom scripts to perform internal reconnaissance. 
+
+Shortcut Modification
+
+Chafer has modified LNK shortcuts. 
+
+Software Packing
+
+Chafer
+
+T1193
+
+Spear Phishing Attachment
+
+Chafer
+
+T1192
+
+Spear Phishing Link
+
+Chafer
+
+T1016
+
+Chafer
+
+Chafer
+
+T1033
+
+T1204
+
+System Network Configuration 
+Discovery
+
+User Execution
+
+Chafer
+
+T1078
+
+Valid Accounts
+
+Chafer
+
+Crambus
+
+T1100
+
+T1087
+
+Web Shell
+
+Account Discovery
+
+Crambus
+
+Crambus
+
+Crambus
+
+Crambus
+
+Crambus
+
+T1119
+
+T1110
+
+T1059
+
+T1043
+
+T1223
+
+Compiled HTML File
+
+Crambus
+
+T1003
+
+Credential Dumping
+
+System Owner/User Discovery
+
+Chafer used Remexi to collect usernames from the system. 
+
+Chafer has repacked a modified version of Mimikatz to thwart anti-virus 
+detection. 
+
+Chafer leveraged spear phishing emails with malicious attachments to 
+initially compromise victims. 
+
+Chafer leveraged spear phishing emails with malicious links to initially 
+compromise victims. 
+
+Chafer has used NBTScan to discover vulnerable systems. 
+
+Chafer has sent spear phishing emails in an attempt to lure users to 
+click on a malicious attachment or link. 
+
+Chafer has used stolen credentials to compromise Outlook Web 
+Access (OWA). 
+
+Chafer has installed ANTAK and ASPXSPY web shells. 
+
+Crambus has run net user, net user /domain, net group "domain 
+admins" /domain, and net group "Exchange Trusted Subsystem" /
+domain to get account listings on a victim. 
+
+Automated Collection
+
+Crambus has used automated collection. 
+
+Brute Force
+
+Crambus has used brute force techniques to obtain credentials. 
+
+Command-Line Interface
+
+Crambus has used the command-line interface for execution. 
+
+Commonly Used Port
+
+Crambus has used port 80 to call back to the C2 server.  
+
+Crambus has used a CHM payload to load and execute another 
+malicious file once delivered to a victim. 
+
+Crambus has used credential dumping tools such as Mimikatz and 
+LaZagne to steal credentials to accounts logged into the compromised 
+system and to Outlook Web Access. 
+
+Broadcom
+
+SED-IAP-WP100
+21
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+Table 7:  Mitre Attack Techniques (Continued)
+
+Group
+
+Technique ID Technique Name
+
+Technique Use
+
+Crambus
+
+T1081
+
+Credentials in Files
+
+Crambus
+
+T1094
+
+Crambus
+
+T1140
+
+Custom Command and Control 
+Protocol
+
+Deobfuscate/Decode Files or 
+Information
+
+Crambus has used tools named VALUEVAULT and PICKPOCKET to 
+dump passwords from web browsers.
+
+Crambus has used custom DNS Tunneling protocols for C2. 
+
+A Crambus macro has run a PowerShell command to decode file 
+contents. Crambus has also used certutil to decode base64-encoded 
+files on victims. 
+
+Crambus
+
+T1048
+
+Exfiltration Over Alternative 
+Protocol
+
+Crambus has exfiltrated data over FTP separately from its primary C2 
+channel over DNS. 
+
+Crambus
+
+T1133
+
+External Remote Services
+
+Crambus
+
+T1008
+
+Fallback Channels
+
+Crambus
+
+T1107
+
+File Deletion
+
+Crambus
+
+T1066
+
+Indicator Removal from Tools
+
+Crambus
+
+T1056
+
+Input Capture
+
+Crambus
+
+T1046
+
+Network Service Scanning
+
+Crambus uses remote services such as VPN, Citrix, or OWA to persist 
+in an environment. 
+
+Crambus malware ISMAgent falls back to its DNS tunneling 
+mechanism if it is unable to reach the C2 server over HTTP. 
+
+Crambus has deleted files associated with their payload after 
+execution. 
+
+Crambus has tested malware samples to determine AV detection and 
+subsequently modified the samples to ensure AV evasion. 
+
+Crambus has used keylogging tools called KEYPUNCH and 
+LONGWATCH.
+
+Crambus has used the publicly available tool SoftPerfect Network 
+Scanner as well as a custom tool called GOLDIRONY to conduct 
+network scanning. 
+
+Crambus
+
+T1027
+
+Obfuscated Files or Information Crambus has encrypted and encoded data in its malware, including by 
+
+Crambus
+
+T1201
+
+Password Policy Discovery
+
+Crambus
+
+T1069
+
+Permission Groups Discovery
+
+Crambus
+
+T1086
+
+PowerShell
+
+Crambus
+
+Crambus
+
+T1057
+
+T1012
+
+Process Discovery
+
+Query Registry
+
+Crambus
+
+T1108
+
+Redundant Access
+
+Crambus
+
+T1076
+
+Remote Desktop Protocol
+
+Crambus
+
+Crambus
+
+Crambus
+
+T1105
+
+T1021
+
+T1053
+
+Remote File Copy
+
+Remote Services
+
+Scheduled Task
+
+Crambus
+
+T1113
+
+Screen Capture
+
+using base64. 
+
+Crambus has used net.exe in a script with net accounts /domain to find 
+the password policy of a domain. 
+
+Crambus has used net group /domain, net localgroup administrators, 
+net group "domain admins" /domain, and net group "Exchange Trusted 
+Subsystem" /domain to find group permission settings on a victim. 
+
+Crambus has used PowerShell scripts for execution, including use of 
+a macro to run a PowerShell command to decode file contents. 
+
+Crambus has run tasklist on a victim's machine. 
+
+Crambus has used reg query 
+"HKEY_CURRENT_USER\Software\Microsoft\Terminal Server 
+Client\Default" on a victim to query the Registry. 
+
+Crambus has used RGDoor via Web shell to establish redundant 
+access. The group has also used harvested credentials to gain access 
+to Internet-accessible resources such as Outlook Web Access, which 
+could be used for redundant access. 
+
+Crambus has used Remote Desktop Protocol for lateral movement. 
+The group has also used tunneling tools to tunnel RDP into the 
+environment. 
+
+Crambus can download remote files onto victims. 
+
+Crambus has used Putty to access compromised systems. 
+
+Crambus has created scheduled tasks that run a VBScript to execute 
+a payload on victim machines. 
+
+Crambus has a tool called CANDYKING to capture a screenshot of 
+user's desktop. 
+
+Broadcom
+
+SED-IAP-WP100
+22
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+Table 7:  Mitre Attack Techniques (Continued)
+
+Group
+
+Technique ID Technique Name
+
+Technique Use
+
+Crambus
+
+T1064
+
+Scripting
+
+Crambus
+
+T1193
+
+Spear Phishing Attachment
+
+Crambus
+
+T1192
+
+Spear Phishing Link
+
+Crambus has used various types of scripting for execution, including 
+.bat and .vbs scripts. The group has also used macros to deliver 
+malware such as QUADAGENT and OopsIE. 
+
+Crambus has sent spear phishing emails with malicious attachments 
+to potential victims using compromised and/or spoofed email 
+accounts. 
+
+Crambus has sent spear phishing emails with malicious links to 
+potential victims. 
+
+Crambus
+
+Crambus
+
+T1194
+
+T1071
+
+Spear Phishing via Service
+
+Crambus has used LinkedIn to send spear phishing links.  
+
+Standard Application Layer 
+Protocol
+
+Crambus has used HTTP and DNS for C2. The group has also used 
+the Plink utility and other tools to create tunnels to C2 servers. 
+
+Crambus
+
+T1032
+
+Standard Cryptographic Protocol Crambus used the Plink utility and other tools to create tunnels to C2 
+
+Crambus
+
+Crambus
+
+T1082
+
+T1016
+
+Crambus
+
+T1049
+
+Crambus
+
+Crambus
+
+T1033
+
+T1007
+
+servers. 
+
+System Information Discovery
+
+Crambus has run hostname and systeminfo on a victim.  
+
+System Network Configuration 
+Discovery
+
+Crambus has run ipconfig /all on a victim. 
+
+System Network Connections 
+Discovery
+
+Crambus has used netstat -an on a victim to get a listing of network 
+connections. 
+
+System Owner/User Discovery
+
+Crambus has run whoami on a victim. 
+
+System Service Discovery
+
+Crambus
+
+T1204
+
+User Execution
+
+Crambus
+
+T1078
+
+Valid Accounts
+
+Crambus
+
+T1100
+
+Web Shell
+
+Crambus
+
+T1047
+
+Windows Management 
+Instrumentation
+
+Crambus has used sc query on a victim to gather information about 
+services. 
+
+Crambus has delivered malicious links and macro-enabled documents 
+that required targets to click the "enable content" button to execute the 
+payload on the system. 
+
+Crambus has used compromised credentials to access other systems 
+on a victim network. 
+
+Crambus has used Web shells, often to maintain access to a victim 
+network. 
+
+Crambus has used WMI for execution.
+
+Broadcom
+
+SED-IAP-WP100
+23
+
+Symantec Critical Attack Discovery and Intelligence White Paper 
+
+Current Iran-Associated Cyber Threats
+
+Revision History 
+
+SED-IAP-WP100; January 24, 2020
+
+Initial release.
+
+Broadcom
+
+SED-IAP-WP100
+24
+
+
